@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "../inc/util.h"
-#include "../inc/2.1.h"
+#include "../inc/include.h"
 
 int main(int argc, char *argv[])
 {
+	fprintf(stdout, "================\n");
+	fprintf(stdout, "argc = %d\n", argc);
 	for (int i = 0; i < argc; i++)
 	{
 		fprintf(stdout, "%s\n", argv[i]);

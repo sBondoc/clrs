@@ -1,5 +1,4 @@
 /* "util.h" - Implementation for utility functions. */
-#include <stdio.h>
 #include "../inc/util.h"
 /* Print int array. */
 void fprintarr_int(FILE *stream, int *arr, int size)
