@@ -2,7 +2,6 @@ DIR_SRC := src
 DIR_INC := inc
 DIR_BIN := bin
 DIR_OBJ := obj
-EXT_SRC := c
 APP := test
 CC := gcc
 CFLAGS := -std=c11 -fsanitize=address -Wall -Wextra -Wpedantic
@@ -10,18 +9,17 @@ DFLAGS := -g -DDEBUG
 EXEC := $(DIR_BIN)/$(APP)
 DIR_BUILD := $(DIR_BIN) $(DIR_OBJ)
 COMPILE := $(CC) $(CFLAGS)
+FILE_INCLUDE := $(DIR_INC)/include.h
+FILE_DRIVER := $(DIR_SRC)/driver.c
 
-MT :=
-SP := $(MT) $(MT)
-SRC_FIND_REGEX := $(subst $(SP),\|,\($(EXT_SRC)\))
-SRC_FIND := $(shell find -regex ".*\/$(DIR_SRC)\/.*.$(SRC_FIND_REGEX)")
-SRC := $(subst ./,,$(SRC_FIND))
-OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o, $(SRC))
 INC := $(shell find -regex ".*\/$(DIR_INC)\/.*.h")
-INC := $(subst ./$(DIR_INC)/,,$(INC))
+INC := $(subst ./,,$(INC))
+INC := $(subst $(FILE_INCLUDE),,$(INC))
+SRC := $(patsubst $(DIR_INC)/%.h,$(DIR_SRC)/%.c,$(INC))
+OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
+INC := $(subst $(DIR_INC)/,,$(INC))
 
 .phony: all run debug rundbg clean test
-FORCE:
 all: $(EXEC)
 run: $(EXEC)
 	./$<
@@ -29,20 +27,20 @@ debug: $(EXEC)_debug
 rundbg: $(EXEC)_debug
 	./$<
 clean: FORCE
-	rm -rf $(DIR_BUILD) $@ 
+	rm -rf $(DIR_BUILD) $(FILE_INCLUDE) 
 test:
-	@echo $(OBJ)
-$(DIR_INC)/include.h: FORCE
-	@echo "=== Generating \"$@\"... ==="
-	echo "/* \"include.h\" - All includes (auto-generated). */" > $@
-	echo "#ifndef INCLUDE_H" >> $@
-	echo "#define INCLUDE_H" >> $@
-	$(foreach f,$(INC),echo "#include \"$(f)\"" >> $@;)
-	echo "#endif" >> $@
-	@echo "=== Generated \"$@\". ==="
+	@echo $(SRC)
+FORCE:
+$(FILE_INCLUDE): FORCE
+	@echo "Generating \"$@\"..."
+	@echo "/* \"include.h\" - All includes (auto-generated). */" > $@
+	@echo "#ifndef INCLUDE_H" >> $@
+	@echo "#define INCLUDE_H" >> $@
+	@$(foreach f,$(INC),echo "#include \"$(f)\"" >> $@;)
+	@echo "#endif" >> $@
 $(DIR_BUILD):
 	mkdir $@
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c | $(DIR_OBJ)
 	$(COMPILE) -c -o $@ $<
-$(EXEC): $(DIR_INC)/include.h $(OBJ) | $(DIR_BIN)
+$(EXEC): $(FILE_INCLUDE) $(FILE_DRIVER) $(OBJ) | $(DIR_BIN)
 	$(COMPILE) -o $@ $^

@@ -4,4 +4,6 @@
 #include <stdio.h>
 /* Print int array. */
 void fprintarr_int(FILE *stream, int *arr, int size);
+/* Generate random int array. */
+void randarr_int(int *arr, int size);
 #endif
