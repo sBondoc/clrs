@@ -5,7 +5,7 @@
 
 void test_2p1(void)
 {
-	fprintf(stdout, "test_2p1();\n");
+	fprintf(stdout, "%s();\n", __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -16,7 +16,7 @@ void test_2p1(void)
 
 void test_2p1d2(void)
 {
-	fprintf(stdout, "test_2p1d2();\n");
+	fprintf(stdout, "%s();\n", __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -27,7 +27,7 @@ void test_2p1d2(void)
 
 void test_2p1d3(void)
 {
-	fprintf(stdout, "test_2p1d3();\n");
+	fprintf(stdout, "%s();\n", __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -44,6 +44,20 @@ void test_2p1d3(void)
 	fprintf(stdout, "%d found at index %d\n", key, search_linear(arr, size, key));
 }
 
+void test_2p1d4(void)
+{
+	fprintf(stdout, "%s();\n", __func__);
+	int n = 4;
+	int a[] = {1, 0, 1, 1}, b[] = {1, 1, 0, 0}, c[n + 1];
+	add_binarr(a, b, c, n);
+	fprintf(stdout, "\t   ");
+	fprintarr_int(stdout, a, n);
+	fprintf(stdout, "+\t   ");
+	fprintarr_int(stdout, b, n);
+	fprintf(stdout, "=\t");
+	fprintarr_int(stdout, c, n + 1);
+}
+
 int main(int argc, char *argv[])
 {
 	fprintf(stdout, "================\n");
@@ -56,6 +70,7 @@ int main(int argc, char *argv[])
 	srand(time(NULL));
 	// test_2p1();
 	// test_2p1d2();
-	test_2p1d3();
+	// test_2p1d3();
+	test_2p1d4();
 	return EXIT_SUCCESS;
 }

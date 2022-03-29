@@ -31,7 +31,7 @@ clean: FORCE
 test:
 	@echo $(SRC)
 FORCE:
-$(FILE_INCLUDE): FORCE
+$(FILE_INCLUDE): $(FILE_DRIVER)
 	@echo "Generating \"$@\"..."
 	@echo "/* \"include.h\" - All includes (auto-generated). */" > $@
 	@echo "#ifndef INCLUDE_H" >> $@
