@@ -5,7 +5,7 @@
 
 void test_2p1(void)
 {
-	fprintf(stdout, "%s();\n", __func__);
+	fprintfunc(stdout, __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -16,7 +16,7 @@ void test_2p1(void)
 
 void test_2p1d2(void)
 {
-	fprintf(stdout, "%s();\n", __func__);
+	fprintfunc(stdout, __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -27,7 +27,7 @@ void test_2p1d2(void)
 
 void test_2p1d3(void)
 {
-	fprintf(stdout, "%s();\n", __func__);
+	fprintfunc(stdout, __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -46,7 +46,7 @@ void test_2p1d3(void)
 
 void test_2p1d4(void)
 {
-	fprintf(stdout, "%s();\n", __func__);
+	fprintfunc(stdout, __func__);
 	int n = 4;
 	int a[] = {1, 0, 1, 1}, b[] = {1, 1, 0, 0}, c[n + 1];
 	add_binarr(a, b, c, n);
@@ -60,7 +60,7 @@ void test_2p1d4(void)
 
 void test_2p2d2(void)
 {
-	fprintf(stdout, "%s();\n", __func__);
+	fprintfunc(stdout, __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -71,7 +71,7 @@ void test_2p2d2(void)
 
 void test_2p3(void)
 {
-	fprintf(stdout, "%s();\n", __func__);
+	fprintfunc(stdout, __func__);
 	int size = 10;
 	int arr[size];
 	randarr_int(arr, size);
@@ -82,13 +82,13 @@ void test_2p3(void)
 
 int main(int argc, char *argv[])
 {
-	fprintf(stdout, "================\n");
+	fprintf(stdout, FG_BLACK_BRIGHT "================\n");
 	fprintf(stdout, "argc = %d\n", argc);
 	for (int i = 0; i < argc; i++)
 	{
 		fprintf(stdout, "%s\n", argv[i]);
 	}
-	fprintf(stdout, "================\n");
+	fprintf(stdout, "================\n" ANSI_RESET);
 	srand(time(NULL));
 	// test_2p1();
 	// test_2p1d2();

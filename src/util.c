@@ -1,6 +1,12 @@
 /* "util.h" - Implementation for utility functions. */
-#include "../inc/util.h"
 #include <stdlib.h>
+#include "../inc/util.h"
+#include "../inc/color.h"
+/* Print function name as "comment". */
+void fprintfunc(FILE *stream, const char *s)
+{
+	fprintf(stream, FG_BLACK_BRIGHT "%s();\n" ANSI_RESET, s);
+}
 /* Print int array. */
 void fprintarr_int(FILE *stream, int *arr, int size)
 {

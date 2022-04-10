@@ -13,10 +13,10 @@ COMPILE := $(CC) $(CFLAGS)
 FILE_INCLUDE := $(DIR_INC)/include.h
 FILE_DRIVER := $(DIR_SRC)/driver.c
 
-INC := $(shell find -regex ".*\/$(DIR_INC)\/.*.h")
+INC := $(shell find -regex ".*\/$(DIR_INC)\/.*\.h")
 INC := $(subst ./,,$(INC))
 INC := $(subst $(FILE_INCLUDE),,$(INC))
-SRC := $(patsubst $(DIR_INC)/%.h,$(DIR_SRC)/%.c,$(INC))
+SRC := $(shell find -regex ".*\/$(DIR_SRC)\/.*\.c")
 OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
 INC := $(subst $(DIR_INC)/,,$(INC))
 
