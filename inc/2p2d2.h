@@ -1,4 +1,4 @@
-/* "2.2-2.h" - Prototypes for 2.2-2 functions. */
+/* "2p2d2.h" - Prototypes for 2.2-2 functions. */
 #ifndef TWO_POINT_ONE_DASH_TWO_H
 #define TWO_POINT_ONE_DASH_TWO_H
 /* Swap two array elements. */

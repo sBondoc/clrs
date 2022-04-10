@@ -1,5 +1,5 @@
-/* "2.2-2.h" - Implementation for 2.2-2 functions. */
-#include "../inc/2.2-2.h"
+/* "2p2d2.c" - Implementation for 2.2-2 functions. */
+#include "../inc/2p2d2.h"
 /* Swap two array elements. */
 void swap(int *arr, int i, int j)
 {

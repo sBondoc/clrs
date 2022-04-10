@@ -1,7 +1,5 @@
-/* "2.1.h" - Implementation for 2.1 functions. */
-#include <stdio.h>
-#include "../inc/util.h"
-#include "../inc/2.1.h"
+/* "2p1.c" - Implementation for 2.1 functions. */
+#include "../inc/2p1.h"
 /* Basic insertion sort. */
 void sort_insertion(int *arr, int size)
 {

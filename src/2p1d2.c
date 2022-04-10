@@ -1,4 +1,5 @@
-/* "2.1-2.h" - Implementation for 2.1-2 functions. */
+/* "2p1d2.c" - Implementation for 2.1-2 functions. */
+#include "../inc/2p1d2.h"
 /* Nonincreasing insertion sort */
 void sort_insertion_nonincreasing(int *arr, int size)
 {
