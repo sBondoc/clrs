@@ -1,3 +1,4 @@
+# "makefile" - Build script.
 DIR_SRC := src
 DIR_INC := inc
 DIR_BIN := bin
