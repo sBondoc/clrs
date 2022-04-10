@@ -23,7 +23,7 @@ int min(int *arr, int i, int j)
 /* Basic selection sort. */
 void sort_selection(int *arr, int size)
 {
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size - 1; i++)
 	{
 		swap(arr, i, min(arr, i, size - 1));
 	}
