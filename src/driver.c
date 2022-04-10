@@ -58,6 +58,17 @@ void test_2p1d4(void)
 	fprintarr_int(stdout, c, n + 1);
 }
 
+void test_2p2d2(void)
+{
+	fprintf(stdout, "%s();\n", __func__);
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size);
+	fprintarr_int(stdout, arr, size);
+	sort_selection(arr, size);
+	fprintarr_int(stdout, arr, size);
+}
+
 int main(int argc, char *argv[])
 {
 	fprintf(stdout, "================\n");
@@ -71,6 +82,7 @@ int main(int argc, char *argv[])
 	// test_2p1();
 	// test_2p1d2();
 	// test_2p1d3();
-	test_2p1d4();
+	// test_2p1d4();
+	test_2p2d2();
 	return EXIT_SUCCESS;
 }
