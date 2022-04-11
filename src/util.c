@@ -1,4 +1,4 @@
-/* "util.h" - Implementation for utility functions. */
+/* "util.c" - Implementation for utility functions. */
 #include <stdlib.h>
 #include "../inc/util.h"
 #include "../inc/color.h"
@@ -24,4 +24,24 @@ void randarr_int(int *arr, int size)
 	{
 		arr[i] = rand() % 100;
 	}
+}
+/* Get smallest array element in range. */
+int min(int *arr, int p, int r)
+{
+	int ret = arr[p];
+	for (int i = p; i <= r; i++)
+	{
+		if (arr[i] < ret)
+		{
+			ret = i;
+		}
+	}
+	return ret;
+}
+/* Swap array elements by index. */
+void swap(int *arr, int i, int j)
+{
+	int temp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = temp;
 }

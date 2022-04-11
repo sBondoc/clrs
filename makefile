@@ -7,9 +7,9 @@ APP := test
 CC := gcc
 CFLAGS := -std=c11 -fsanitize=address -Wall -Wextra -Wpedantic
 DFLAGS := -g -DDEBUG
+FLAGS := $(CFLAGS)
 EXEC := $(DIR_BIN)/$(APP)
 DIR_BUILD := $(DIR_BIN) $(DIR_OBJ)
-COMPILE := $(CC) $(CFLAGS)
 FILE_INCLUDE := $(DIR_INC)/include.h
 FILE_DRIVER := $(DIR_SRC)/driver.c
 
@@ -26,7 +26,9 @@ OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
 all: $(EXEC)
 run: $(EXEC)
 	./$<
+debug: FLAGS += $(DFLAGS)
 debug: $(EXEC)_debug
+rundbg: FLAGS += $(DFLAGS)
 rundbg: $(EXEC)_debug
 	./$<
 clean: FORCE
@@ -44,8 +46,6 @@ $(FILE_INCLUDE): $(FILE_DRIVER)
 $(DIR_BUILD):
 	mkdir $@
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c | $(DIR_OBJ)
-	$(COMPILE) -c -o $@ $<
-$(EXEC): $(FILE_DRIVER) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
-	$(COMPILE) -o $@ $^
-$(EXEC)_debug: $(FILE_DRIVER) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
-	$(COMPILE) $(DFLAGS) -o $@ $^
+	$(CC) $(FLAGS) -c -o $@ $<
+$(EXEC) $(EXEC)_debug: $(FILE_DRIVER) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
+	$(CC) $(FLAGS) -o $@ $^

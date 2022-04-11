@@ -3,6 +3,16 @@
 #include <time.h>
 #include "../inc/include.h"
 
+void test_util(void)
+{
+	fprintfunc(stdout, __func__);
+	int arr[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, size = sizeof(arr) / sizeof(arr[0]);
+	fprintarr_int(stdout, arr, size);
+	randarr_int(arr, size);
+	fprintarr_int(stdout, arr, size);
+	fprintf(stdout, "Min index: %d\n", min(arr, 0, size - 1));
+}
+
 void test_2p1(void)
 {
 	fprintfunc(stdout, __func__);
@@ -124,6 +134,7 @@ int main(int argc, char *argv[])
 	fprintf(stdout, "================\n" ANSI_RESET);
 	srand(time(NULL));
 	/*
+	test_util();
 	test_2p1();
 	test_2p1d2();
 	test_2p1d3();
@@ -133,6 +144,6 @@ int main(int argc, char *argv[])
 	test_2p3d2();
 	test_2d1();
 	*/
-	test_2d2();
+	test_2p2d2();
 	return EXIT_SUCCESS;
 }

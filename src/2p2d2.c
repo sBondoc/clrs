@@ -1,25 +1,6 @@
 /* "2p2d2.c" - Implementation for 2.2-2 functions. */
 #include "../inc/2p2d2.h"
-/* Swap two array elements. */
-void swap(int *arr, int i, int j)
-{
-	int temp = arr[i];
-	arr[i] = arr[j];
-	arr[j] = temp;
-}
-/* Get index of smallest array element in range. */
-int min(int *arr, int i, int j)
-{
-	int ret = i;
-	for (int k = i + 1; k <= j; k++)
-	{
-		if (arr[k] < arr[ret])
-		{
-			ret = k;
-		}
-	}
-	return ret;
-}
+#include "../inc/util.h"
 /* Basic selection sort. */
 void sort_selection(int *arr, int size)
 {
