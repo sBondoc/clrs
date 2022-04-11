@@ -144,6 +144,6 @@ int main(int argc, char *argv[])
 	test_2p3d2();
 	test_2d1();
 	*/
-	test_2p2d2();
+	test_2d2();
 	return EXIT_SUCCESS;
 }
