@@ -98,7 +98,7 @@ void test_2d1(void)
 	int arr[size];
 	randarr_int(arr, size);
 	fprintarr_int(stdout, arr, size);
-	sort_insertion_range(arr, 0, size - 1);
+	sort_merge_insertion(arr, 0, size - 1, 10);
 	fprintarr_int(stdout, arr, size);
 }
 
