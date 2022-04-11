@@ -102,6 +102,17 @@ void test_2d1(void)
 	fprintarr_int(stdout, arr, size);
 }
 
+void test_2d2(void)
+{
+	fprintfunc(stdout, __func__);
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size);
+	fprintarr_int(stdout, arr, size);
+	sort_bubble(arr, size);
+	fprintarr_int(stdout, arr, size);
+}
+
 int main(int argc, char *argv[])
 {
 	fprintf(stdout, FG_BLACK_BRIGHT "================\n");
@@ -120,7 +131,8 @@ int main(int argc, char *argv[])
 	test_2p2d2();
 	test_2p3();
 	test_2p3d2();
-	*/
 	test_2d1();
+	*/
+	test_2d2();
 	return EXIT_SUCCESS;
 }

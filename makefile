@@ -16,9 +16,11 @@ FILE_DRIVER := $(DIR_SRC)/driver.c
 INC := $(shell find -regex ".*\/$(DIR_INC)\/.*\.h")
 INC := $(subst ./,,$(INC))
 INC := $(subst $(FILE_INCLUDE),,$(INC))
-SRC := $(shell find -regex ".*\/$(DIR_SRC)\/.*\.c")
-OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
 INC := $(subst $(DIR_INC)/,,$(INC))
+SRC := $(shell find -regex ".*\/$(DIR_SRC)\/.*\.c")
+SRC := $(subst ./,,$(SRC))
+SRC := $(subst $(FILE_DRIVER),,$(SRC))
+OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
 
 .phony: all run debug rundbg clean test
 all: $(EXEC)
@@ -30,7 +32,7 @@ rundbg: $(EXEC)_debug
 clean: FORCE
 	rm -rf $(DIR_BUILD) $(FILE_INCLUDE) 
 test:
-	@echo $(SRC)
+	@echo $(OBJ)
 FORCE:
 $(FILE_INCLUDE): $(FILE_DRIVER)
 	@echo "Generating \"$@\"..."
@@ -43,7 +45,7 @@ $(DIR_BUILD):
 	mkdir $@
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c | $(DIR_OBJ)
 	$(COMPILE) -c -o $@ $<
-$(EXEC): $(FILE_INCLUDE) $(FILE_DRIVER) $(OBJ) | $(DIR_BIN)
+$(EXEC): $(FILE_DRIVER) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
 	$(COMPILE) -o $@ $^
-$(EXEC)_debug: $(FILE_INCLUDE) $(FILE_DRIVER) $(OBJ) | $(DIR_BIN)
+$(EXEC)_debug: $(FILE_DRIVER) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
 	$(COMPILE) $(DFLAGS) -o $@ $^
