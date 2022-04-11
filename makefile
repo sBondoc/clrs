@@ -45,3 +45,5 @@ $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c | $(DIR_OBJ)
 	$(COMPILE) -c -o $@ $<
 $(EXEC): $(FILE_INCLUDE) $(FILE_DRIVER) $(OBJ) | $(DIR_BIN)
 	$(COMPILE) -o $@ $^
+$(EXEC)_debug: $(FILE_INCLUDE) $(FILE_DRIVER) $(OBJ) | $(DIR_BIN)
+	$(COMPILE) $(DFLAGS) -o $@ $^
