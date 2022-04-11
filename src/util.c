@@ -25,7 +25,7 @@ void randarr_int(int *arr, int size)
 		arr[i] = rand() % 100;
 	}
 }
-/* Get smallest array element in range. */
+/* Get index of smallest array element in range. */
 int min(int *arr, int p, int r)
 {
 	int ret = arr[p];
