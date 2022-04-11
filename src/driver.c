@@ -123,6 +123,15 @@ void test_2d2(void)
 	fprintarr_int(stdout, arr, size);
 }
 
+void test_2d3(void)
+{
+	fprintfunc(stdout, __func__);
+	int a[] = {0, 1, 2, 3}, n = sizeof(a) / sizeof(a[0]), x = 2;
+	fprintf(stdout, "a = ");
+	fprintarr_int(stdout, a, n);
+	fprintf(stdout, "n = %d\nx = %d\nsum = %d\n", n, x, horner(a, n, x));
+}
+
 int main(int argc, char *argv[])
 {
 	fprintf(stdout, FG_BLACK_BRIGHT "================\n");
@@ -143,7 +152,8 @@ int main(int argc, char *argv[])
 	test_2p3();
 	test_2p3d2();
 	test_2d1();
-	*/
 	test_2d2();
+	*/
+	test_2d3();
 	return EXIT_SUCCESS;
 }
