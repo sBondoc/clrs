@@ -27,10 +27,9 @@ all: $(EXEC)
 run: $(EXEC)
 	./$<
 debug: FLAGS += $(DFLAGS)
-debug: $(EXEC)_debug
+debug: all
 rundbg: FLAGS += $(DFLAGS)
-rundbg: $(EXEC)_debug
-	./$<
+rundbg: run
 clean: FORCE
 	rm -rf $(DIR_BUILD) $(FILE_INCLUDE) 
 test:
