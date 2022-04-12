@@ -129,7 +129,8 @@ void test_2d3(void)
 	int a[] = {0, 1, 2, 3}, n = sizeof(a) / sizeof(a[0]), x = 2;
 	fprintf(stdout, "a = ");
 	fprintarr_int(stdout, a, n);
-	fprintf(stdout, "n = %d\nx = %d\nsum = %d\n", n, x, horner(a, n, x));
+	fprintf(stdout, "n = %d\nx = %d\n", n, x);
+	fprintf(stdout, "horner = %d\npolynomial = %d\n", horner(a, n, x), polynomial(a, n,x));
 }
 
 int main(int argc, char *argv[])

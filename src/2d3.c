@@ -6,7 +6,22 @@ int horner(int a[], int n, int x)
 	int ret = 0;
 	for (int i = n - 1; -1 < i; i--)
 	{
-		ret = a[i] + (x * ret);
+		ret = a[i] + x * ret;
+	}
+	return ret;
+}
+/* Polynomial evaluation. */
+int polynomial(int a[], int n, int x)
+{
+	int ret = 0;
+	for (int i = 0; i < n; i++)
+	{
+		int term = 1;
+		for (int j = 0; j < i; j++)
+		{
+			term *= x;
+		}
+		ret += a[i] * term;
 	}
 	return ret;
 }

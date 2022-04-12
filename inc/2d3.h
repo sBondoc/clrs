@@ -3,4 +3,6 @@
 #define TWO_DASH_THREE
 /* Horner's rule for polynomial evaluation. */
 int horner(int a[], int n, int x);
+/* Polynomial evaluation. */
+int polynomial(int a[], int n, int x);
 #endif
