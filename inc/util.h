@@ -2,6 +2,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 #include <stdio.h>
+#include <stdbool.h>
 /* Print function name as "comment". */
 void fprintfunc(FILE *stream, const char *s);
 /* Print int array. */
@@ -12,4 +13,6 @@ void randarr_int(int *arr, int size);
 int min(int *arr, int p, int r);
 /* Swap array elements by index. */
 void swap(int *arr, int i, int j);
+/* Check array inversion pair. */
+bool inversion(int *arr, int i, int j);
 #endif
