@@ -3,6 +3,10 @@
 /* Horner's rule for polynomial evaluation. */
 int horner(int a[], int n, int x)
 {
-	// code
-	return 0;
+	int ret = 0;
+	for (int i = n - 1; -1 < i; i--)
+	{
+		ret = a[i] + (x * ret);
+	}
+	return ret;
 }
