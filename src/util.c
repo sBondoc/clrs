@@ -48,5 +48,5 @@ void swap(int *arr, int i, int j)
 /* Check array inversion pair. */
 bool inversion(int *arr, int i, int j)
 {
-	return (i < j) && (a[j] < a[i]);
+	return (i < j) && (arr[j] < arr[i]);
 }

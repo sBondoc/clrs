@@ -7,10 +7,12 @@ void test_util(void)
 {
 	fprintfunc(stdout, __func__);
 	int arr[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, size = sizeof(arr) / sizeof(arr[0]);
+	int i = rand() % size, j = rand() % size;
 	fprintarr_int(stdout, arr, size);
 	randarr_int(arr, size);
 	fprintarr_int(stdout, arr, size);
 	fprintf(stdout, "Min index: %d\n", min(arr, 0, size - 1));
+	fprintf(stdout, "(%d, %d) is %san inversion of arr.\n", i, j, (inversion(arr, i, j)) ? "" : "not ");
 }
 
 void test_2p1(void)
@@ -154,7 +156,8 @@ int main(int argc, char *argv[])
 	test_2p3d2();
 	test_2d1();
 	test_2d2();
-	*/
 	test_2d3();
+	*/
+	test_util();
 	return EXIT_SUCCESS;
 }
