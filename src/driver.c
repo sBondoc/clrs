@@ -135,6 +135,14 @@ void test_2d3(void)
 	fprintf(stdout, "horner = %d\npolynomial = %d\n", horner(a, n, x), polynomial(a, n,x));
 }
 
+void test_2d4(void)
+{
+	fprintfunc(stdout, __func__);
+	int arr[] = {2, 3, 8, 6, 1}, size = sizeof(arr) / sizeof(arr[0]);
+	fprintarr_int(stdout, arr, size);
+	fprintf(stdout, "Inversions: %d\n", count_inversion_brute(arr, 0, size - 1));
+}
+
 int main(int argc, char *argv[])
 {
 	fprintf(stdout, FG_BLACK_BRIGHT "================\n");
@@ -158,6 +166,6 @@ int main(int argc, char *argv[])
 	test_2d2();
 	test_2d3();
 	*/
-	test_util();
+	test_2d4();
 	return EXIT_SUCCESS;
 }
