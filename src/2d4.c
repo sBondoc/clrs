@@ -1,5 +1,6 @@
 /* "2d4.c" - Implementation for 2-4 functions. */
 #include <string.h>
+#include <limits.h>
 #include "../inc/2d4.h"
 /* Inversion count in array range brute force. */
 int count_inversion_brute(int *arr, int p, int r)
@@ -21,18 +22,27 @@ int count_inversion_brute(int *arr, int p, int r)
 int count_inversion_merge(int *arr, int p, int q, int r)
 {
 	int nl = q - p + 1, nr = r - q;
-	int left[nl], right[nr];
+	int left[nl + 1], right[nr + 1];
 	memcpy(left, &arr[p], nl * sizeof(int));
-	memcpy(left, &arr[q + 1], nr * sizeof(int));
-	int ret = 0;
-	for (int i = 0; i < nl; i++)
+	memcpy(right, &arr[q + 1], nr * sizeof(int));
+	left[nl] = INT_MAX;
+	right[nr] = INT_MAX;
+	int ret = 0, i = 0, j = 0;
+	for (int k = p; k <= r; k++)
 	{
-		for (int j = 0; j < nr; j++)
+		if (left[i] < right[j])
 		{
-			if (right[j] < left[i])
-			{
-				ret++;
-			}
+			arr[k] = left[i++];
+		}
+		else
+		{
+			/*
+			If selecting from right array, must be inversion because
+			everything in the right array is supposed to be greater
+			than everything in the left array.
+			*/
+			arr[k] = right[j++];
+			ret++;
 		}
 	}
 	return ret;
@@ -40,7 +50,7 @@ int count_inversion_merge(int *arr, int p, int q, int r)
 /* Inversion count in array. */
 int count_inversion(int *arr, int p, int r)
 {
-	if (1 < r - p)
+	if (p < r)
 	{
 		int q = (p + r) / 2;
 		return

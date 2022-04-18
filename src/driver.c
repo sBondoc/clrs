@@ -140,7 +140,7 @@ void test_2d4(void)
 	fprintfunc(stdout, __func__);
 	int arr[] = {2, 3, 8, 6, 1}, size = sizeof(arr) / sizeof(arr[0]);
 	fprintarr_int(stdout, arr, size);
-	fprintf(stdout, "Inversions: %d\n", count_inversion_brute(arr, 0, size - 1));
+	fprintf(stdout, "Inversions: %d\n", count_inversion(arr, 0, size - 1));
 }
 
 int main(int argc, char *argv[])
