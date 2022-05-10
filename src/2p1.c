@@ -1,5 +1,5 @@
 /* "2p1.c" - Implementation for 2.1 functions. */
-#include "../inc/2p1.h"
+#include "2p1.h"
 /* Basic insertion sort. */
 void sort_insertion(int *arr, int size)
 {

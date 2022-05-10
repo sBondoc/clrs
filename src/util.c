@@ -1,7 +1,7 @@
 /* "util.c" - Implementation for utility functions. */
 #include <stdlib.h>
-#include "../inc/util.h"
-#include "../inc/color.h"
+#include "util.h"
+#include "color.h"
 /* Print function name as "comment". */
 void fprintfunc(FILE *stream, const char *s)
 {

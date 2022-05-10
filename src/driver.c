@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "../inc/include.h"
+#include "include.h"
 
 void test_util(void)
 {

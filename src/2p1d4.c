@@ -1,5 +1,5 @@
 /* "2p1d4.c" - Implementation for 2.1-4 functions. */
-#include "../inc/2p1d4.h"
+#include "2p1d4.h"
 /* Add binary digits */
 void add_binarr(int *a, int *b, int *c, int n)
 {

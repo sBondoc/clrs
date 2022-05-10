@@ -1,7 +1,7 @@
 /* "2d1.c" - Implementation for 2-1 functions. */
 #include <string.h>
 #include <limits.h>
-#include "../inc/2d1.h"
+#include "2d1.h"
 /* Insertion sort on range. */
 void sort_insertion_range(int *arr, int p, int r)
 {

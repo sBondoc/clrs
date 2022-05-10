@@ -1,7 +1,7 @@
 /* "2d4.c" - Implementation for 2-4 functions. */
 #include <string.h>
 #include <limits.h>
-#include "../inc/2d4.h"
+#include "2d4.h"
 /* Inversion count in array range brute force. */
 int count_inversion_brute(int *arr, int p, int r)
 {

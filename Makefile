@@ -7,7 +7,8 @@ APP := test
 CC := gcc
 CFLAGS := -std=c11 -fsanitize=address -Wall -Wextra -Wpedantic
 DFLAGS := -g -DDEBUG
-FLAGS := $(CFLAGS)
+
+FLAGS := $(CFLAGS) -I"$(DIR_INC)"
 EXEC := $(DIR_BIN)/$(APP)
 DIR_BUILD := $(DIR_BIN) $(DIR_OBJ)
 FILE_INCLUDE := $(DIR_INC)/include.h

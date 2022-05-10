@@ -1,8 +1,8 @@
 /* "2p3d2.c" - Implementation for 2.3-2 functions. */
 #include <string.h>
 #include <stdio.h>
-#include "../inc/2p3d2.h"
-#include "../inc/util.h"
+#include "2p3d2.h"
+#include "util.h"
 /* Recursive merge sort no sentinel merge step. */
 void sort_merge_no_sentinel_merge(int *arr, int p, int q, int r)
 {
