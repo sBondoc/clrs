@@ -12,7 +12,7 @@ FLAGS := $(CFLAGS) -I"$(DIR_INC)"
 EXEC := $(DIR_BIN)/$(APP)
 DIR_BUILD := $(DIR_BIN) $(DIR_OBJ)
 FILE_INCLUDE := $(DIR_INC)/include.h
-FILE_DRIVER := $(DIR_SRC)/driver.c
+FILE_MAIN := $(DIR_SRC)/main.c
 
 INC := $(shell find -regex ".*\/$(DIR_INC)\/.*\.h")
 INC := $(subst ./,,$(INC))
@@ -20,7 +20,7 @@ INC := $(subst $(FILE_INCLUDE),,$(INC))
 INC := $(subst $(DIR_INC)/,,$(INC))
 SRC := $(shell find -regex ".*\/$(DIR_SRC)\/.*\.c")
 SRC := $(subst ./,,$(SRC))
-SRC := $(subst $(FILE_DRIVER),,$(SRC))
+SRC := $(subst $(FILE_MAIN),,$(SRC))
 OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
 
 .phony: all run debug rundbg clean test
@@ -36,7 +36,7 @@ clean: FORCE
 test:
 	@echo $(OBJ)
 FORCE:
-$(FILE_INCLUDE): $(FILE_DRIVER)
+$(FILE_INCLUDE): $(FILE_MAIN)
 	@echo "Generating \"$@\"..."
 	@echo "/* \"include.h\" - All includes (auto-generated). */" > $@
 	@echo "#ifndef INCLUDE_H" >> $@
@@ -47,5 +47,5 @@ $(DIR_BUILD):
 	mkdir $@
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c | $(DIR_OBJ)
 	$(CC) $(FLAGS) -c -o $@ $<
-$(EXEC) $(EXEC)_debug: $(FILE_DRIVER) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
+$(EXEC) $(EXEC)_debug: $(FILE_MAIN) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
 	$(CC) $(FLAGS) -o $@ $^
