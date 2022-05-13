@@ -5,3 +5,5 @@ bin/
 obj/
 # Dynamic include
 inc/include.h
+# Text
+txt/*
