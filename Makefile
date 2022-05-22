@@ -7,9 +7,11 @@ APP := test
 CC := gcc
 CFLAGS := -std=c11 -fsanitize=address -Wall -Wextra -Wpedantic
 DFLAGS := -g -DDEBUG
+SFX_DBG := _dbg
 
 FLAGS := $(CFLAGS) -I"$(DIR_INC)"
 EXEC := $(DIR_BIN)/$(APP)
+EXEC_DBG = $(EXEC)$(SFX_DBG)
 DIR_BUILD := $(DIR_BIN) $(DIR_OBJ)
 FILE_INCLUDE := $(DIR_INC)/include.h
 FILE_MAIN := $(DIR_SRC)/main.c
@@ -22,21 +24,23 @@ SRC := $(shell find -regex ".*\/$(DIR_SRC)\/.*\.c")
 SRC := $(subst ./,,$(SRC))
 SRC := $(subst $(FILE_MAIN),,$(SRC))
 OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
+OBJ_DBG := $(patsubst %.o,%$(SFX_DBG).o,$(OBJ))
 
 .phony: all run debug rundbg clean test
 all: $(EXEC)
 run: $(EXEC)
 	./$<
-debug: FLAGS += $(DFLAGS)
-debug: all
+alldbg: FLAGS += $(DFLAGS)
+alldbg: $(EXEC_DBG)
 rundbg: FLAGS += $(DFLAGS)
-rundbg: run
+rundbg: $(EXEC_DBG)
+	./$<
 clean: FORCE
 	rm -rf $(DIR_BUILD) $(FILE_INCLUDE) 
 test:
-	@echo $(OBJ)
+	@echo $(OBJ_DBG)
 FORCE:
-$(FILE_INCLUDE): $(FILE_MAIN)
+$(FILE_INCLUDE):
 	@echo "Generating \"$@\"..."
 	@echo "/* \"include.h\" - All includes (auto-generated). */" > $@
 	@echo "#ifndef INCLUDE_H" >> $@
@@ -45,7 +49,9 @@ $(FILE_INCLUDE): $(FILE_MAIN)
 	@echo "#endif" >> $@
 $(DIR_BUILD):
 	mkdir $@
-$(DIR_OBJ)/%.o: $(DIR_SRC)/%.c | $(DIR_OBJ)
+$(DIR_OBJ)/%.o $(DIR_OBJ)/%$(SFX_DBG).o: $(DIR_SRC)/%.c | $(FILE_INCLUDE) $(DIR_OBJ)
 	$(CC) $(FLAGS) -c -o $@ $<
-$(EXEC) $(EXEC)_debug: $(FILE_MAIN) $(OBJ) | $(FILE_INCLUDE) $(DIR_BIN)
+$(EXEC): $(FILE_MAIN) $(OBJ) | $(DIR_BIN)
+	$(CC) $(FLAGS) -o $@ $^
+$(EXEC_DBG): $(FILE_MAIN) $(OBJ_DBG) | $(DIR_BIN)
 	$(CC) $(FLAGS) -o $@ $^

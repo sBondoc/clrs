@@ -6,6 +6,6 @@ void sort_selection(int *arr, int size)
 {
 	for (int i = 0; i < size - 1; i++)
 	{
-		swap(arr, i, min(arr, i, size - 1));
+		swap(arr, i, index_min(arr, i, size - 1));
 	}
 }
