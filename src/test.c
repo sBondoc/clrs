@@ -56,6 +56,10 @@ void test_by_name(const char *s)
 	{
 		test_2d4();
 	}
+	else if (strcmp(s, "4p1") == 0)
+	{
+		test_4p1();
+	}
 	else if (strcmp(s, "all") == 0)
 	{
 		test_all();
@@ -216,6 +220,16 @@ void test_2d4(void)
 	int arr[] = {2, 3, 8, 6, 1}, size = sizeof(arr) / sizeof(arr[0]);
 	fprintarr_int(stdout, arr, size);
 	fprintf(stdout, "Inversions: %d\n", count_inversion(arr, 0, size - 1));
+}
+void test_4p1(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int arr[] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7}, size = sizeof(arr) / sizeof(arr[0]);
+	fprintarr_int(stdout, arr, size);
+	struct Subarray sa = max_subarray(arr, 0, size - 1);
+	fprintf(stdout, "Max subarray: [%d, %d]\nSum: %d\n", sa.p, sa.r, sa.sum);
 }
 void test_all(void)
 {
