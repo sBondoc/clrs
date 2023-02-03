@@ -40,6 +40,10 @@ void test_by_name(const char *s)
 	{
 		test_2p3d2();
 	}
+	else if (strcmp(s, "2p3d4") == 0)
+	{
+		test_2p3d4();
+	}
 	else if (strcmp(s, "2d1") == 0)
 	{
 		test_2d1();
@@ -220,6 +224,18 @@ void test_2d4(void)
 	int arr[] = {2, 3, 8, 6, 1}, size = sizeof(arr) / sizeof(arr[0]);
 	fprintarr_int(stdout, arr, size);
 	fprintf(stdout, "Inversions: %d\n", count_inversion(arr, 0, size - 1));
+}
+void test_2p3d4(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size);
+	fprintarr_int(stdout, arr, size);
+	sort_insertion_recursive(arr, size - 1);
+	fprintarr_int(stdout, arr, size);
 }
 void test_4p1(void)
 {
