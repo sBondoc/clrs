@@ -267,7 +267,7 @@ void test_2p3d7(void)
 	int arr[size];
 	randarr_int(arr, size);
 	fprintarr_int(stdout, arr, size);
-	int sum = arr[0] + arr[1];
+	int sum = arr[size - 2] + arr[size - 1];
 	bool b = sum_exists(arr, size, sum);
 	fprintf(stdout, "Sum of %d %s in the array.\n", sum, (b) ? "exists" : "does not exist");
 }
