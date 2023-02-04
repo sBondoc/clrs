@@ -44,6 +44,10 @@ void test_by_name(const char *s)
 	{
 		test_2p3d4();
 	}
+	else if (strcmp(s, "2p3d5") == 0)
+	{
+		test_2p3d5();
+	}
 	else if (strcmp(s, "2d1") == 0)
 	{
 		test_2d1();
@@ -236,6 +240,19 @@ void test_2p3d4(void)
 	fprintarr_int(stdout, arr, size);
 	sort_insertion_recursive(arr, size - 1);
 	fprintarr_int(stdout, arr, size);
+}
+void test_2p3d5(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size);
+	int key = arr[0];
+	sort_merge(arr, 0, size - 1);
+	fprintarr_int(stdout, arr, size);
+	fprintf(stdout, "Found %d at index %d.\n", key, binary_search(arr, key, 0, size - 1));
 }
 void test_4p1(void)
 {
