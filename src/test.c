@@ -48,6 +48,10 @@ void test_by_name(const char *s)
 	{
 		test_2p3d5();
 	}
+	else if (strcmp(s, "2p3d7") == 0)
+	{
+		test_2p3d7();
+	}
 	else if (strcmp(s, "2d1") == 0)
 	{
 		test_2d1();
@@ -253,6 +257,19 @@ void test_2p3d5(void)
 	sort_merge(arr, 0, size - 1);
 	fprintarr_int(stdout, arr, size);
 	fprintf(stdout, "Found %d at index %d.\n", key, binary_search(arr, key, 0, size - 1));
+}
+void test_2p3d7(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size);
+	fprintarr_int(stdout, arr, size);
+	int sum = arr[0] + arr[1];
+	bool b = sum_exists(arr, size, sum);
+	fprintf(stdout, "Sum of %d %s in the array.\n", sum, (b) ? "exists" : "does not exist");
 }
 void test_4p1(void)
 {

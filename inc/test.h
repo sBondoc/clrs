@@ -12,6 +12,7 @@ void test_2p3(void);
 void test_2p3d2(void);
 void test_2p3d4(void);
 void test_2p3d5(void);
+void test_2p3d7(void);
 void test_2d1(void);
 void test_2d2(void);
 void test_2d3(void);
