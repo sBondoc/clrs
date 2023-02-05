@@ -72,6 +72,10 @@ void test_by_name(const char *s)
 	{
 		test_4p1();
 	}
+	else if (strcmp(s, "4p1d2") == 0)
+	{
+		test_4p1d2();
+	}
 	else if (strcmp(s, "all") == 0)
 	{
 		test_all();
@@ -279,6 +283,16 @@ void test_4p1(void)
 	int arr[] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7}, size = sizeof(arr) / sizeof(arr[0]);
 	fprintarr_int(stdout, arr, size);
 	struct Subarray sa = max_subarray(arr, 0, size - 1);
+	fprintf(stdout, "Max subarray: [%d, %d]\nSum: %d\n", sa.p, sa.r, sa.sum);
+}
+void test_4p1d2(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int arr[] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7}, size = sizeof(arr) / sizeof(arr[0]);
+	fprintarr_int(stdout, arr, size);
+	struct Subarray sa = max_subarray_brute(arr, size);
 	fprintf(stdout, "Max subarray: [%d, %d]\nSum: %d\n", sa.p, sa.r, sa.sum);
 }
 void test_all(void)
