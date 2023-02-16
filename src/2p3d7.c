@@ -7,8 +7,8 @@ bool sum_exists(int *arr, int size, int sum)
 {
 	int arr_copy[size];
 	memcpy(arr_copy, arr, ((size_t) size) * sizeof(arr[0])); // Copy array to preserve original.
-	fprintarr_int(stdout, arr_copy, size);
 	sort_merge(arr_copy, 0, size - 1);
+	fprintarr_int(stdout, arr_copy, size);
 	int i = 0, j = size - 1;
 	while (i < j)
 	{
