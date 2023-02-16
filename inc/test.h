@@ -19,5 +19,6 @@ void test_2d3(void);
 void test_2d4(void);
 void test_4p1(void);
 void test_4p1d2(void);
+void test_4p1d3(void);
 void test_all(void);
 #endif

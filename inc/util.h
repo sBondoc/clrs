@@ -8,7 +8,7 @@ void fprintfunc(FILE *stream, const char *s);
 /* Print int array. */
 void fprintarr_int(FILE *stream, int *arr, int size);
 /* Generate random int array. */
-void randarr_int(int *arr, int size);
+void randarr_int(int *arr, int size, int low, int high);
 /* Return index of smallest array element in range (inclusive). */
 int index_min(int *arr, int p, int r);
 /* Return index of largest array element in range (inclusive). */

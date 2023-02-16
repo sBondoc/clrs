@@ -76,6 +76,10 @@ void test_by_name(const char *s)
 	{
 		test_4p1d2();
 	}
+	else if (strcmp(s, "4p1d3") == 0)
+	{
+		test_4p1d3();
+	}
 	else if (strcmp(s, "all") == 0)
 	{
 		test_all();
@@ -93,7 +97,7 @@ void test_util(void)
 	int arr[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, size = sizeof(arr) / sizeof(arr[0]);
 	int i = rand() % size, j = rand() % size;
 	fprintarr_int(stdout, arr, size);
-	randarr_int(arr, size);
+	randarr_int(arr, size, -100, 100);
 	fprintarr_int(stdout, arr, size);
 	fprintf(stdout, "Min index: %d\n", index_min(arr, 0, size - 1));
 	fprintf(stdout, "(%d, %d) is %san inversion of arr.\n", i, j, (inversion(arr, i, j)) ? "" : "not ");
@@ -105,7 +109,7 @@ void test_2p1(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_insertion(arr, size);
 	fprintarr_int(stdout, arr, size);
@@ -117,7 +121,7 @@ void test_2p1d2(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_insertion_nonincreasing(arr, size);
 	fprintarr_int(stdout, arr, size);
@@ -129,7 +133,7 @@ void test_2p1d3(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	int key;
 	if (rand () < RAND_MAX / 4)
 	{
@@ -164,7 +168,7 @@ void test_2p2d2(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_selection(arr, size);
 	fprintarr_int(stdout, arr, size);
@@ -176,7 +180,7 @@ void test_2p3(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_merge(arr, 0, size - 1);
 	fprintarr_int(stdout, arr, size);
@@ -188,7 +192,7 @@ void test_2p3d2(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_merge_no_sentinel(arr, 0, size - 1);
 	fprintarr_int(stdout, arr, size);
@@ -200,7 +204,7 @@ void test_2d1(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_merge_insertion(arr, 0, size - 1, 10);
 	fprintarr_int(stdout, arr, size);
@@ -212,7 +216,7 @@ void test_2d2(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_bubble(arr, size);
 	fprintarr_int(stdout, arr, size);
@@ -244,7 +248,7 @@ void test_2p3d4(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	sort_insertion_recursive(arr, size - 1);
 	fprintarr_int(stdout, arr, size);
@@ -256,7 +260,7 @@ void test_2p3d5(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	int key = arr[0];
 	sort_merge(arr, 0, size - 1);
 	fprintarr_int(stdout, arr, size);
@@ -269,7 +273,7 @@ void test_2p3d7(void)
 	#endif
 	int size = 10;
 	int arr[size];
-	randarr_int(arr, size);
+	randarr_int(arr, size, 0, 100);
 	fprintarr_int(stdout, arr, size);
 	int sum = arr[size - 2] + arr[size - 1];
 	bool b = sum_exists(arr, size, sum);
