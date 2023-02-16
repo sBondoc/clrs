@@ -299,6 +299,18 @@ void test_4p1d2(void)
 	struct Subarray sa = max_subarray_brute(arr, size);
 	fprintf(stdout, "Max subarray: [%d, %d]\nSum: %d\n", sa.p, sa.r, sa.sum);
 }
+void test_4p1d3(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	for (int n = 1; n < 10; n++)
+	{
+		int arr[n];
+		randarr_int(arr, n, -100, 100);
+		fprintarr_int(stdout, arr, n);
+	}
+}
 void test_all(void)
 {
 	test_util();
