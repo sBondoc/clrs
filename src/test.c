@@ -304,12 +304,21 @@ void test_4p1d3(void)
 	#ifdef DEBUG
 	fprintfunc(stdout, __func__);
 	#endif
-	for (int n = 1; n < 10; n++)
+	clock_t start;
+	double time_brute = -1, time_dc = 0;
+	int n = 8;
+	while (time_brute < time_dc)
 	{
-		int arr[n];
+		int arr[++n];
 		randarr_int(arr, n, -100, 100);
-		fprintarr_int(stdout, arr, n);
+		start = clock();
+		max_subarray_brute(arr, n);
+		time_brute = ((double) (clock() - start)) / CLOCKS_PER_SEC;
+		start = clock();
+		max_subarray(arr, 0, n - 1);
+		time_dc = ((double) (clock() - start)) / CLOCKS_PER_SEC;
 	}
+	fprintf(stdout, "Size:\t\t\t%d\nDivide and conquer:\t%f\nBrute force:\t\t%f\n", n, time_dc, time_brute);
 }
 void test_all(void)
 {
