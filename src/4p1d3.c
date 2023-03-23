@@ -1,6 +1,7 @@
 /* "4p1d3.c" - Implementation for 4.1-3 functions. */
 #include <limits.h>
 #include "4p1.h"
+#include "4p1d2.h"
 #include "4p1d3.h"
 /* Find max subarray combining recursive and brute force methods. */
 struct Subarray max_subarray_composite(int *arr, int p, int r, int crossover)
@@ -14,6 +15,10 @@ struct Subarray max_subarray_composite(int *arr, int p, int r, int crossover)
 			.sum = arr[p],
 		};
 		return ret;
+	}
+	if (r - p < crossover)
+	{
+		return max_subarray_brute(arr, p, r);
 	}
 	int q = (p + r) / 2;
 	struct Subarray left = max_subarray(arr, p, q);

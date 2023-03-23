@@ -80,6 +80,10 @@ void test_by_name(const char *s)
 	{
 		test_4p1d3();
 	}
+	else if (strcmp(s, "4p1d5") == 0)
+	{
+		test_4p1d5();
+	}
 	else if (strcmp(s, "all") == 0)
 	{
 		test_all();
@@ -296,7 +300,7 @@ void test_4p1d2(void)
 	#endif
 	int arr[] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7}, size = sizeof(arr) / sizeof(arr[0]);
 	fprintarr_int(stdout, arr, size);
-	struct Subarray sa = max_subarray_brute(arr, size);
+	struct Subarray sa = max_subarray_brute(arr, 0, size - 1);
 	fprintf(stdout, "Max subarray: [%d, %d]\nSum: %d\n", sa.p, sa.r, sa.sum);
 }
 void test_4p1d3(void)
@@ -312,13 +316,24 @@ void test_4p1d3(void)
 		int arr[++n];
 		randarr_int(arr, n, -100, 100);
 		start = clock();
-		max_subarray_brute(arr, n);
+		max_subarray_brute(arr, 0, n - 1);
 		time_brute = ((double) (clock() - start)) / CLOCKS_PER_SEC;
 		start = clock();
 		max_subarray(arr, 0, n - 1);
 		time_dc = ((double) (clock() - start)) / CLOCKS_PER_SEC;
 	}
 	fprintf(stdout, "Size:\t\t\t%d\nDivide and conquer:\t%f\nBrute force:\t\t%f\n", n, time_dc, time_brute);
+}
+void test_4p1d5(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int arr[] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7}, size = sizeof(arr) / sizeof(arr[0]);
+	fprintarr_int(stdout, arr, size);
+	struct Subarray sa = max_subarray_linear(arr, 0, size - 1);
+	fprintf(stdout, "Max subarray: [%d, %d]\nSum: %d\n", sa.p, sa.r, sa.sum);
+
 }
 void test_all(void)
 {

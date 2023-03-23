@@ -3,5 +3,5 @@
 #define FOUR_POINT_ONE_DASH_TWO_H
 #include "subarray.h"
 /* Find maximum subarray brute force. */
-struct Subarray max_subarray_brute(int *arr, int size);
+struct Subarray max_subarray_brute(int *arr, int p, int r);
 #endif

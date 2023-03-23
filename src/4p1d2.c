@@ -2,27 +2,27 @@
 #include <limits.h>
 #include "4p1d2.h"
 /* Find maximum subarray brute force. */
-struct Subarray max_subarray_brute(int *arr, int size)
+struct Subarray max_subarray_brute(int *arr, int p, int r)
 {
-	int p = 0, r = 0, sum = INT_MIN;
-	for (int i = 0; i < size; i++)
+	int p_intermediate = p, r_intermediate = p, sum = INT_MIN;
+	for (int i = p; i <= r; i++)
 	{
 		int sum_intermediate = 0;
-		for (int j = i; j < size; j++)
+		for (int j = i; j <= r; j++)
 		{
 			sum_intermediate += arr[j];
 			if (sum < sum_intermediate)
 			{
-				p = i;
-				r = j;
+				p_intermediate = i;
+				r_intermediate = j;
 				sum = sum_intermediate;
 			}
 		}
 	}
 	struct Subarray ret =
 	{
-		.p = p,
-		.r = r,
+		.p = p_intermediate,
+		.r = r_intermediate,
 		.sum = sum,
 	};
 	return ret;

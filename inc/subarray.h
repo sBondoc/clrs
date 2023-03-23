@@ -3,6 +3,7 @@
 #define SUBARRAY_H
 struct Subarray
 {
+	int *arr;
 	int p;
 	int r;
 	int sum;
