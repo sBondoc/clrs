@@ -12,6 +12,10 @@ void test_by_name(const char *s)
 	{
 		test_util();
 	}
+	else if (strcmp(s, "matrix") == 0)
+	{
+		test_matrix();
+	}
 	else if (strcmp(s, "2p1") == 0)
 	{
 		test_2p1();
@@ -105,6 +109,19 @@ void test_util(void)
 	fprintarr_int(stdout, arr, size);
 	fprintf(stdout, "Min index: %d\n", index_min(arr, 0, size - 1));
 	fprintf(stdout, "(%d, %d) is %san inversion of arr.\n", i, j, (inversion(arr, i, j)) ? "" : "not ");
+}
+void test_matrix(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int arr[3][3] =
+	{
+		{0, 1, 2},
+		{3, 4, 5},
+		{6, 7, 8},
+	};
+	fprintmatrix(stdout, (int **) arr, 3, 3);
 }
 void test_2p1(void)
 {

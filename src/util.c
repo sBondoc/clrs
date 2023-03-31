@@ -17,6 +17,24 @@ void fprintarr_int(FILE *stream, int *arr, int size)
 	}
 	fprintf(stream, "%d}\n", arr[size - 1]);
 }
+/* Print matrix. */
+void fprintmatrix(FILE *stream, int *arr, int rows, int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		fprintf(stream, "\u2502 %d\t", arr[matrix_index(i, 0, cols)]);
+		for (int j = 1; j < cols - 1; j++)
+		{
+			fprintf(stream, "  %d\t", arr[matrix_index(i, j, cols)]);
+		}
+		fprintf(stream, "  %d \u2502\n", arr[matrix_index(i, cols - 1, cols)]);
+	}
+}
+/* Transform matrix index. */
+int matrix_index(int i, int j, int cols)
+{
+	return i * cols + j;
+}
 /* Generate random int array */
 void randarr_int(int *arr, int size, int low, int high)
 {

@@ -7,6 +7,10 @@
 void fprintfunc(FILE *stream, const char *s);
 /* Print int array. */
 void fprintarr_int(FILE *stream, int *arr, int size);
+/* Print matrix. */
+void fprintmatrix(FILE *stream, int *arr, int rows, int cols);
+/* Transform matrix index. */
+int matrix_index(int i, int j, int cols);
 /* Generate random int array. */
 void randarr_int(int *arr, int size, int low, int high);
 /* Return index of smallest array element in range (inclusive). */

@@ -3,6 +3,7 @@
 #define TEST_H
 void test_by_name(const char *s);
 void test_util(void);
+void test_matrix(void);
 void test_2p1(void);
 void test_2p1d2(void);
 void test_2p1d3(void);
