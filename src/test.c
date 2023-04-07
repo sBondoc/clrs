@@ -88,6 +88,10 @@ void test_by_name(const char *s)
 	{
 		test_4p1d5();
 	}
+	else if (strcmp(s, "4p2") == 0)
+	{
+		test_4p2();
+	}
 	else if (strcmp(s, "all") == 0)
 	{
 		test_all();
@@ -355,6 +359,20 @@ void test_4p1d5(void)
 	fprintf(stdout, "Max subarray: [%d, %d]\nSum: %d\n", sa.p, sa.r, sa.sum);
 
 }
+void test_4p2(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int rows = 4, cols = 4, upper = (rows * cols) / 2, lower = (rows * cols) / -2;
+	int matrix_a[rows * cols], matrix_b[rows * cols], matrix_c[rows * cols];
+	randarr_int(matrix_a, rows * cols, lower, upper);
+	randarr_int(matrix_b, rows * cols, lower, upper);
+	square_matrix_multiply(matrix_c, matrix_a, matrix_b, rows);
+	fprintmatrix(stdout, matrix_a, rows, cols);
+	fprintmatrix(stdout, matrix_b, rows, cols);
+	fprintmatrix(stdout, matrix_c, rows, cols);
+}
 void test_all(void)
 {
 	test_util();
@@ -377,4 +395,5 @@ void test_all(void)
 	test_4p1d2();
 	test_4p1d3();
 	test_4p1d5();
+	test_4p2();
 }
