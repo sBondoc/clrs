@@ -115,13 +115,16 @@ void test_matrix(void)
 	#ifdef DEBUG
 	fprintfunc(stdout, __func__);
 	#endif
-	int arr[3][3] =
+	int rows = 20, cols = 20;
+	int arr[rows * cols];
+	for (int i = 0; i < rows; i++)
 	{
-		{0, 1, 2},
-		{3, 4, 5},
-		{6, 7, 8},
-	};
-	fprintmatrix(stdout, (int **) arr, 3, 3);
+		for (int j = 0; j < cols; j++)
+		{
+			arr[matrix_index(i, j, cols)] = matrix_index(i, j, cols) - (rows * cols) / 2;
+		}
+	}
+	fprintmatrix(stdout, arr, rows, cols);
 }
 void test_2p1(void)
 {
@@ -218,6 +221,44 @@ void test_2p3d2(void)
 	sort_merge_no_sentinel(arr, 0, size - 1);
 	fprintarr_int(stdout, arr, size);
 }
+void test_2p3d4(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size, 0, 100);
+	fprintarr_int(stdout, arr, size);
+	sort_insertion_recursive(arr, size - 1);
+	fprintarr_int(stdout, arr, size);
+}
+void test_2p3d5(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size, 0, 100);
+	int key = arr[0];
+	sort_merge(arr, 0, size - 1);
+	fprintarr_int(stdout, arr, size);
+	fprintf(stdout, "Found %d at index %d.\n", key, binary_search(arr, key, 0, size - 1));
+}
+void test_2p3d7(void)
+{
+	#ifdef DEBUG
+	fprintfunc(stdout, __func__);
+	#endif
+	int size = 10;
+	int arr[size];
+	randarr_int(arr, size, 0, 100);
+	fprintarr_int(stdout, arr, size);
+	int sum = arr[size - 2] + arr[size - 1];
+	bool b = sum_exists(arr, size, sum);
+	fprintf(stdout, "Sum of %d %s in the array.\n", sum, (b) ? "exists" : "does not exist");
+}
 void test_2d1(void)
 {
 	#ifdef DEBUG
@@ -261,44 +302,6 @@ void test_2d4(void)
 	int arr[] = {2, 3, 8, 6, 1}, size = sizeof(arr) / sizeof(arr[0]);
 	fprintarr_int(stdout, arr, size);
 	fprintf(stdout, "Inversions: %d\n", count_inversion(arr, 0, size - 1));
-}
-void test_2p3d4(void)
-{
-	#ifdef DEBUG
-	fprintfunc(stdout, __func__);
-	#endif
-	int size = 10;
-	int arr[size];
-	randarr_int(arr, size, 0, 100);
-	fprintarr_int(stdout, arr, size);
-	sort_insertion_recursive(arr, size - 1);
-	fprintarr_int(stdout, arr, size);
-}
-void test_2p3d5(void)
-{
-	#ifdef DEBUG
-	fprintfunc(stdout, __func__);
-	#endif
-	int size = 10;
-	int arr[size];
-	randarr_int(arr, size, 0, 100);
-	int key = arr[0];
-	sort_merge(arr, 0, size - 1);
-	fprintarr_int(stdout, arr, size);
-	fprintf(stdout, "Found %d at index %d.\n", key, binary_search(arr, key, 0, size - 1));
-}
-void test_2p3d7(void)
-{
-	#ifdef DEBUG
-	fprintfunc(stdout, __func__);
-	#endif
-	int size = 10;
-	int arr[size];
-	randarr_int(arr, size, 0, 100);
-	fprintarr_int(stdout, arr, size);
-	int sum = arr[size - 2] + arr[size - 1];
-	bool b = sum_exists(arr, size, sum);
-	fprintf(stdout, "Sum of %d %s in the array.\n", sum, (b) ? "exists" : "does not exist");
 }
 void test_4p1(void)
 {
@@ -355,6 +358,7 @@ void test_4p1d5(void)
 void test_all(void)
 {
 	test_util();
+	test_matrix();
 	test_2p1();
 	test_2p1d2();
 	test_2p1d3();
@@ -362,8 +366,15 @@ void test_all(void)
 	test_2p2d2();
 	test_2p3();
 	test_2p3d2();
+	test_2p3d4();
+	test_2p3d5();
+	test_2p3d7();
 	test_2d1();
 	test_2d2();
 	test_2d3();
 	test_2d4();
+	test_4p1();
+	test_4p1d2();
+	test_4p1d3();
+	test_4p1d5();
 }

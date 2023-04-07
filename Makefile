@@ -5,11 +5,12 @@ DIR_BIN := bin
 DIR_OBJ := obj
 APP := test
 CC := gcc
-CFLAGS := -std=c11 -fsanitize=address -Wall -Wextra -Wpedantic
+CFLAGS := -fsanitize=address
 DFLAGS := -g -DDEBUG
+LFLAGS := -lm
 SFX_DBG := _dbg
 
-FLAGS := $(CFLAGS) -I"$(DIR_INC)"
+FLAGS := -I"$(DIR_INC)" -std=c11 -Wall -Wextra -Wpedantic
 EXEC := $(DIR_BIN)/$(APP)
 EXEC_DBG = $(EXEC)$(SFX_DBG)
 DIR_BUILD := $(DIR_BIN) $(DIR_OBJ)
@@ -27,7 +28,9 @@ OBJ := $(patsubst $(DIR_SRC)/%.c,$(DIR_OBJ)/%.o,$(SRC))
 OBJ_DBG := $(patsubst %.o,%$(SFX_DBG).o,$(OBJ))
 
 .phony: all run debug rundbg clean test
+all: FLAGS += $(CFLAGS)
 all: $(EXEC)
+run: FLAGS += $(CFLAGS)
 run: $(EXEC)
 	./$<
 alldbg: FLAGS += $(DFLAGS)
@@ -52,6 +55,6 @@ $(DIR_BUILD):
 $(DIR_OBJ)/%.o $(DIR_OBJ)/%$(SFX_DBG).o: $(DIR_SRC)/%.c | $(FILE_INCLUDE) $(DIR_OBJ)
 	$(CC) $(FLAGS) -c -o $@ $<
 $(EXEC): $(FILE_MAIN) $(OBJ) | $(DIR_BIN)
-	$(CC) $(FLAGS) -o $@ $^
+	$(CC) $(FLAGS) -o $@ $^ $(LFLAGS)
 $(EXEC_DBG): $(FILE_MAIN) $(OBJ_DBG) | $(DIR_BIN)
-	$(CC) $(FLAGS) -o $@ $^
+	$(CC) $(FLAGS) -o $@ $^ $(LFLAGS)

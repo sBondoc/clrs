@@ -1,5 +1,6 @@
 /* "util.c" - Implementation for utility functions. */
 #include <stdlib.h>
+#include <math.h>
 #include "util.h"
 #include "color.h"
 /* Print function name as "comment". */
@@ -20,15 +21,24 @@ void fprintarr_int(FILE *stream, int *arr, int size)
 /* Print matrix. */
 void fprintmatrix(FILE *stream, int *arr, int rows, int cols)
 {
+	int max_candidate = floor(log10(arr[index_max(arr, 0, rows * cols - 1)])) + 1,
+	min_candidate = arr[index_min(arr, 0, rows * cols - 1)];
+	if (min_candidate < 0)
+	{
+		min_candidate = floor(log10(-1 * min_candidate)) + 2;
+	}
+	int max_length = max(max_candidate, min_candidate);
+	fprintf(stream, "\u250c%*s\u2510\n", (max_length + 1) * cols + 1, "");
 	for (int i = 0; i < rows; i++)
 	{
-		fprintf(stream, "\u2502 %d\t", arr[matrix_index(i, 0, cols)]);
+		fprintf(stream, "\u2502 %*d ", max_length, arr[matrix_index(i, 0, cols)]);
 		for (int j = 1; j < cols - 1; j++)
 		{
-			fprintf(stream, "  %d\t", arr[matrix_index(i, j, cols)]);
+			fprintf(stream, "%*d ", max_length, arr[matrix_index(i, j, cols)]);
 		}
-		fprintf(stream, "  %d \u2502\n", arr[matrix_index(i, cols - 1, cols)]);
+		fprintf(stream, "%*d \u2502\n", max_length, arr[matrix_index(i, cols - 1, cols)]);
 	}
+	fprintf(stream, "\u2514%*s\u2518\n", (max_length + 1) * cols + 1, "");
 }
 /* Transform matrix index. */
 int matrix_index(int i, int j, int cols)
