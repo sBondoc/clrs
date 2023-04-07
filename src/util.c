@@ -28,6 +28,7 @@ void fprintmatrix(FILE *stream, int *arr, int rows, int cols)
 		min_candidate = floor(log10(-1 * min_candidate)) + 2;
 	}
 	int max_length = max(max_candidate, min_candidate);
+	max_length = max(1, max_length);
 	fprintf(stream, "\u250c%*s\u2510\n", (max_length + 1) * cols + 1, "");
 	for (int i = 0; i < rows; i++)
 	{
